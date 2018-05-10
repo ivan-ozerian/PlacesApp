@@ -3,6 +3,7 @@ import {StyleSheet, Text, TextInput, View, Button} from 'react-native';
 
 import PlaceInput from './src/components/PlaceInput/PlaceInput';
 import PlaceList from './src/components/PlaceList/PlaceList';
+import placeImage from './src/assets/paradise.jpg'
 
 
 export default class App extends React.Component {
@@ -13,16 +14,20 @@ export default class App extends React.Component {
     placeAddedHandler = placeName => {
         this.setState(prevState => {
             return {
-                places: prevState.places.concat(placeName)
-            }
-        })
+                places: prevState.places.concat({
+                    key: Math.random(),
+                    name: placeName,
+                    image: placeImage
+                })
+            };
+        });
     };
 
-    placeDeletedHandler = index => {
+    placeDeletedHandler = key => {
         this.setState(prevState => {
             return {
-                places: prevState.places.filter((place, i) => {
-                    return i !== index;
+                places: prevState.places.filter((place) => {
+                    return place.key !== key;
                 })
             }
         });
