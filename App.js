@@ -1,19 +1,27 @@
 import React from 'react';
-import MainScreen from './src/containers/MainScreen';
+import {createStackNavigator} from 'react-navigation';
 
-import {Provider} from 'react-redux';
+import AuthScreen from './src/screens/Auth/Auth'
 
-import configureStore from './src/store/configureStore'
+const RootStack = createStackNavigator(
+    {
+        Auth: {
+            screen: AuthScreen,
+            navigationOptions: {
+                title: "Login"
+            },
+        }
+    },
+    {
+        initialRouteName: 'Auth'
+    }
+);
 
 export default class App extends React.Component {
 
     render() {
-        const store = configureStore();
-
         return (
-            <Provider store={store}>
-                <MainScreen/>
-            </Provider>
+            <RootStack/>
         );
     }
 }
