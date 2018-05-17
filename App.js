@@ -6,18 +6,13 @@ import MainTabs from "./src/screens/MainTabs/startMainTabs"
 
 const RootStack = createStackNavigator(
     {
-        Auth: {
-            screen: AuthScreen,
-            navigationOptions: {
-                title: "Login"
-            },
-        },
-        MainTabs: {
-            screen: MainTabs
-        }
+        Auth: AuthScreen,
+        MainTabs: MainTabs
     },
     {
-        initialRouteName: 'Auth'
+        navigationOptions: ({navigation}) => ({
+            title: navigation.state.routeName
+        }),
     }
 );
 
