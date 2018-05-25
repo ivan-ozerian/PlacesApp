@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 
 import PlaceInput from '../components/PlaceInput/PlaceInput';
 import PlaceList from '../components/PlaceList/PlaceList';
-import PlaceDetail from '../components/PlaceDetail/PlaceDetail';
-import {addPlace, unselectPlace, selectPlace, deletePlace} from '../store/actions/index';
+import PlaceDetail from '../screens/PlaceDetail/PlaceDetail';
+import {addPlace, deletePlace} from '../store/actions/index';
 
 class MainScreen extends React.Component {
 
@@ -60,9 +60,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddPlace: (name) => dispatch(addPlace(name)),
-        onDeletePlace: () => dispatch(deletePlace()),
-        onSelectPlace: (key) => dispatch(selectPlace(key)),
-        onUnselectPlace: () => dispatch(unselectPlace())
+        onDeletePlace: () => dispatch(deletePlace())
     }
 };
 

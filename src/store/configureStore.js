@@ -1,13 +1,19 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 
-import placesReducer from './reducers/places';
+import {middleware} from "../utils/redux";
+
+import placesReducer from './reducers/places/index';
+import navReducer from './reducers/navigation/index'
 
 const rootReducer = combineReducers({
-    places: placesReducer
+    places: placesReducer,
+    nav: navReducer
 });
 
 const configureStore = () => {
-    return createStore(rootReducer);
+    return createStore(
+        rootReducer,
+        applyMiddleware(middleware));
 };
 
 export default configureStore;
